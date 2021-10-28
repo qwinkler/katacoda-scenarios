@@ -12,6 +12,10 @@
       {
         "title": "Deploy",
         "text": "step2.md"
+      },
+      {
+        "title": "Summarize",
+        "text": "step3.md"
       }
     ],
     "intro": {

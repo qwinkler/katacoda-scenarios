@@ -43,6 +43,5 @@ services:
 And an environment file (`echoserver.env`):
 
 ```
----
 PORT=8080
 ```
