@@ -10,7 +10,7 @@ To create a Docker Swarm service with `nginx` image in 3 replicas you will need 
 version: '3.3'
 services:
 	app:
-		image: nginx:1.21
+		image: quay.io/qwinkler/nginx:1.21
 		replicas: 3
 ```
 
@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.21
+        image: quay.io/qwinkler/nginx:1.21
 </pre>
 
 As you can see, our manifest file looks bigger now and we introduced `labels`. I will explain it to you. The Deployment contains the `template` section. In this section, you just defining a Pod template that will be running. So, our Pods will have image that we set, name and labels.  
@@ -75,7 +75,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:latest
+        image: quay.io/qwinkler/nginx:latest
 </pre>
 
 And apply it once again: `kubectl apply -f basic-deployment.yml`{{execute}}.

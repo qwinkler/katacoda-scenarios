@@ -12,7 +12,7 @@ To run the container using docker, you will create a next docker-compose file:
 version: '3.3'
 services:
 	app:
-		image: nginx:1.21
+		image: quay.io/qwinkler/nginx:1.21
 		container_name: nginx
 ```
 
@@ -26,7 +26,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: nginx:1.21
+    image: quay.io/qwinkler/nginx:1.21
     ports:
     - containerPort: 80
 </pre>

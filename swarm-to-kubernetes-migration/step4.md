@@ -35,7 +35,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: nginx:1.21
+    image: quay.io/qwinkler/nginx:1.21
     ports:
     - containerPort: 80
 ---
@@ -74,7 +74,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: nginx:1.21
+    image: quay.io/qwinkler/nginx:1.21
     ports:
     - name: nginx-port
       containerPort: 80

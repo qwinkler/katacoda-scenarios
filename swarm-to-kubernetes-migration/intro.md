@@ -4,4 +4,4 @@ Before continuing, please, make sure you finished the [`swarm-repetition` scenar
 
 We will dive deeper with Kubernetes in action.
 
-These exercises have been tests in theKubernetes cluster that is set up for you here in Katacoda, but you should also be able to run the same exercises using the Kubernetes support in Docker for Mac/Windows, Minikube or any other Kubernetes deployment tool supported on your laptop.
+These exercises have been tests in the Kubernetes cluster that is set up for you here in Katacoda, but you should also be able to run the same exercises using the Kubernetes support in Docker for Mac/Windows, Minikube or any other Kubernetes deployment tool supported on your laptop.

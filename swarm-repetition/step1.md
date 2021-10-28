@@ -9,7 +9,7 @@ Create a stack file:
 version: '3.3'
 services:
   app:
-    image: docker.io/cilium/echoserver:1.10.3
+    image: quay.io/qwinkler/echoserver:1.10.3
     env_file:
       - echoserver.env
     ports:

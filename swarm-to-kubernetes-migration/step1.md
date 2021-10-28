@@ -8,9 +8,10 @@ Verify the cluster status: `kubectl get nodes`{{execute}}
 The nodes status must be `Ready`.
 
 If you see the following note:  
-```
-The connection to the server localhost:8080 was refused - did you specify the right host or port?
-```
+> The connection to the server localhost:8080 was refused - did you specify the right host or port?
+
+Or this note:  
+> error: no configuration has been provided, try setting KUBERNETES_MASTER environment variable
 
 Just wait for a while. The Kubernetes cluster need some time in order to spin up.
 
