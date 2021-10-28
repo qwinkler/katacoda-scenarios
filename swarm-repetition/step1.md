@@ -4,9 +4,9 @@ Now you are using the Docker Swarm. Everybody knows that you need the few things
 
 > We choose the [echoserver](https://github.com/cilium/echoserver). It is a simple web server which provide some information about it.
 
-Create a stack file (`echoserver.yml`):
+Create a stack file:
 
-```
+<pre class="file" data-filename="echoserver.yml" data-target="replace">
 ---
 version: '3.3'
 services:
@@ -38,10 +38,11 @@ services:
         reservations:
           cpus: '0.1'
           memory: 32M
-```
+</pre>
 
-And an environment file (`echoserver.env`):
+And an environment file:
 
-```
+<pre class="file" data-filename="echoserver.env" data-target="replace">
+---
 PORT=8080
-```
+</pre>
