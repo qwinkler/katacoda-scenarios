@@ -1,0 +1,1 @@
+Thanks for the journey. Keep learning the Kubernetes and improve your skills!

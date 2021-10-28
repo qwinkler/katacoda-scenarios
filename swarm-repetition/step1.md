@@ -1,5 +1,3 @@
-# Prepare stack and env files
-
 Now you are using the Docker Swarm. Everybody knows that you need the few things in order to deploy your application to the Docker Swarm: stack and environment files. Let's deploy the simple application.
 
 > We choose the [echoserver](https://github.com/cilium/echoserver). It is a simple web server which provide some information about it.
