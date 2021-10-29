@@ -1,8 +1,8 @@
 We understood how to run the simple container inside a Kubernetes cluster - using Pods! But what about the scalability? Here is where Deployment primitive comes! Before I will explain the Deployment, let me also tell you about Kubernetes Controllers...
 
-The core of the Kubernetes primitives is built on top of Controllers: [https://kubernetes.io/docs/concepts/architecture/controller](https://kubernetes.io/docs/concepts/architecture/controller/). The Controllers is just a control loops. In robotics and automation, a *control loop* is a non-terminating loop that regulates the state of a system. For example, the Deployment is one of the Controllers that regulates ReplicaSet and the ReplicaSet regulates Pod replicas, state, etc. There are also other primitives in Kubernetes except Deployment and ReplicaSet: StatefulSet, DaemonSet, Job, CronJob and many many more. We need them for different manipulations, but the most important to remember: they are just a Controllers.
+The core of the Kubernetes primitives is built on top of [Controllers](https://kubernetes.io/docs/concepts/architecture/controller). The Controllers is just a control loops. In robotics and automation, a *control loop* is a non-terminating loop that regulates the state of a system. For example, the Deployment is one of the Controllers that regulates ReplicaSet and the ReplicaSet regulates Pod replicas, state, etc. There are also other primitives in Kubernetes except Deployment and ReplicaSet: StatefulSet, DaemonSet, Job, CronJob and many many more. We need them for different manipulations, but the most important to remember: they are just a Controllers.
 
-Now we are ready to explore the Deployment Controller, because you will use them most of the time. The Deployment ([https://kubernetes.io/docs/concepts/workloads/controllers/deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)) is just like a Docker Swarm service. You define the template of a Pod that you want to create and other properties, like `replicas`, for example. Let's compare them.
+Now we are ready to explore the Deployment Controller, because you will use them most of the time. The [Deployment Object](https://kubernetes.io/docs/concepts/workloads/controllers/deployment) is just like a Docker Swarm service. You define the template of a Pod that you want to create and other properties, like `replicas`, for example. Let's compare them.
 
 To create a Docker Swarm service with `nginx` image in 3 replicas you will need to create a following manifest:
 
@@ -50,8 +50,8 @@ On this step we created a lot of Kubernetes resources. Namely: Deployment, Repli
 
 Why the Kubernetes did it in that way? So, with this approach we can do a very fine tuning of the Deployment behaviour. For example, we can configre Deployment to scale the current ReplicaSet before creating a new Pods, or we can configure it to create ALL of the new Pods and only them remove the old ones (like blue/green deployment strategy). So, with these features, we can do a very great configuration of our deployment process.
 
-Sorry for such a long epilogue, I guess it wasn't so boring. Let's back to our Deployment. To prove, that I'm not lying, let's get all of the resources that Kubernetes created with our Deployment file: `kubectl get deployment,replicaset,pod`{{execute}}.  
-As you can see, I'm not a liar! There are 1 Deployment, 1 ReplicaSet and 3 Pods.
+Sorry for such a long epilogue, I guess it wasn't so boring. Let's back to our Deployment. To prove it, let's get all of the resources that Kubernetes created with our Deployment file: `kubectl get deployment,replicaset,pod`{{execute}}.  
+There are 1 Deployment, 1 ReplicaSet and 3 Pods.
 
 Since we gave our resources the `app: nginx` label, let's filter the output in this way. Of course it will not change anything in our case, but in real life it must be so hard to navigate through hundrends of resources. For this, run the following command: `kubectl get deployment,replicaset,pod -l app=nginx`{{execute}}.
 
@@ -84,7 +84,7 @@ We can see what is happening with a Pods in a real time. For this, run: `kubectl
 
 > Press Ctrl+C to stop the watch process
 
-As you saw, the new Pod was created and the old one was removed. Now, we need to have: 1 Deployment, 2 ReplicaSet and 3 Pods. Lets verify:
+As you saw, the new Pods were creating and the old one removed. At this moment we have 1 Deployment, 2 ReplicaSet and 3 Pods. Lets verify:
 
 `kubectl get deployment,replicaset,pod`{{execute}}
 

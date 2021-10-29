@@ -22,12 +22,20 @@
         "text": "step4.md"
       },
       {
-        "title": "Scaling our workload",
+        "title": "Scale workload",
         "text": "step5.md"
       },
       {
-        "title": "Expose our workload",
+        "title": "Communicate between Pod",
         "text": "step6.md"
+      },
+      {
+        "title": "Secrets",
+        "text": "step7.md"
+      },
+      {
+        "title": "Expose your application",
+        "text": "step8.md"
       }
     ],
     "intro": {
@@ -41,6 +49,6 @@
     "uilayout": "editor-terminal"
   },
   "backend": {
-    "imageid": "kubernetes-cluster-running:1.18"
+    "imageid": "minikube-running"
   }
 }

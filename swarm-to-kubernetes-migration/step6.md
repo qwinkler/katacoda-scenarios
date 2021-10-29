@@ -61,9 +61,9 @@ Let's verify. For this, we need to find the Pod IP: `kubectl get pod -l app=ngin
 Great. Now, let's describe our service: `kubectl describe service -l app=nginx`{{execute}}.  
 As you can see, there is the `Endpoints` section which contains our Pod IP. Great, let's test it:
 
-`kubectl exec -it nginx -- bash`{{execute}}.  
-`curl -I --silent http://nginx-service | head -n1`{{execute}}.  
-`exit`{{execute}}.  
+Exec to the Pod: `kubectl exec -it nginx -- bash`{{execute}}  
+Fetch the service by DNS name: `curl -I --silent http://nginx-service | head -n1`{{execute}}.  
+Press `exit`.
 
 Cool. Let's modify our service a bit and I will explain you the Service details:  
 <pre class="file" data-filename="service.yml" data-target="replace">
@@ -112,8 +112,7 @@ Also, we specified it's parameters:
 
 As you can see, everything works! Do the cleanup: `kubectl delete -f service.yml`{{execute}}.
 
-There are some restrictions in the Service names. They must be RFC 1123 compatable: [DNS Subdomain Names 
-](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names).
+There are some restrictions in the Service names. They must be RFC 1123 compatable: [DNS Subdomain Names](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names).
 
 For example, the Service name `hello-world_app` is invalid, because you can't use the `_` symbol in DNS name.
 

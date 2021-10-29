@@ -1,13 +1,15 @@
 To interact with Kubernetes and with Pods in particular, we will use `kubectl`.  
 To interact with Docker containers we will use `docker` cli.  
 
+These both CLIs are very similar. You will use the same commands, like `run`, `exec`, `delete`, and others.
+
 Our task is to create a Docker container and Pod with `ubuntu:20.04` image, run some commands and exit from it. Let's start with a docker:  
 To run the container, simply run: `docker run --rm -it quay.io/qwinkler/ubuntu:20.04 bash`{{execute}}.  
 You can execute any commands, like: `echo "hello from docker container"`{{execute}}.  
 Great, type `exit` and container will be deleted, since we put the `--rm` flag.
 
 Let's do the same in the Kubernetes:  
-To run the Pod, simply run: `kubectl run --rm -it --image=quay.io/qwinkler/ubuntu:20.04 ubuntu  -- bash`{{execute}}  
+To run the Pod, simply run: `kubectl run --rm -it --image=quay.io/qwinkler/ubuntu:20.04 ubuntu -- bash`{{execute}}  
 You can execute any commands, like: `echo "hello from Kubernetes!"`{{execute}}  
 Great, type `exit` and the Pod will be deleted, since we put the `--rm` flag. As you can see, there is no much differences, to be honest.
 
