@@ -1,5 +1,10 @@
 Before going deeper with Kubernetes, let's setup an environment for that. Right now, the new Kubernetes cluster is spinning up for you.
 
+For this scenario we choose the [Minikube](https://minikube.sigs.k8s.io/docs) for multiple reasons:
+- You may easilly install it to your laptop;
+- You only have to type `minikube start` in order to spin up the local Kubernetes cluster;
+- We can install an add-ons in order to bring the experince to the real-world Kubernetes cluster.
+
 Okay, we have a running Kubernetes cluster, but how to interact with it? The Kubernetes brain is the Kubernetes API server. Since it is a REST API and every request is going throw it, you can use any util to interact with it, but the most common one is the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview) CLI tool.  
 We will use the `kubectl` in this scenario aswell. So, let's get started!
 
@@ -13,7 +18,7 @@ If you see the following note:
 Or this note:  
 > error: no configuration has been provided, try setting KUBERNETES_MASTER environment variable
 
-Just wait for a while. The Kubernetes cluster need some time in order to spin up.
+Just wait for a while. The Minikube need some time in order to spin up.
 
 The very important thing to remember: you always communicate with Kubernetes via REST API. So, you can (and probably you will) interact with the Kubernetes cluster **from your local machine**. There is no need to login to master nodes (as it was in the Docker Swarm).
 

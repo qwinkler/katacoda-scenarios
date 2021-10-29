@@ -36,6 +36,22 @@
       {
         "title": "Expose your application",
         "text": "step8.md"
+      },
+      {
+        "title": "Probes",
+        "text": "step9.md"
+      },
+      {
+        "title": "Migration!",
+        "text": "step10.md"
+      },
+      {
+        "title": "Final manifest",
+        "text": "step11.md"
+      },
+      {
+        "title": "What next?",
+        "text": "step12.md"
       }
     ],
     "intro": {

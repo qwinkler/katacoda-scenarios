@@ -13,7 +13,9 @@ To run the Pod, simply run: `kubectl run --rm -it --image=quay.io/qwinkler/ubunt
 You can execute any commands, like: `echo "hello from Kubernetes!"`{{execute}}  
 Great, type `exit` and the Pod will be deleted, since we put the `--rm` flag. As you can see, there is no much differences, to be honest.
 
-The Pod and other Kubernetes resources may be created via CLI, but the prefered way is to use manifest file (it is like a docker-compose in a Docker ecosystem). We can see how our Pod manifest will look like. For this, simply run the following command: `kubectl run --dry-run=client --output yaml --image=quay.io/qwinkler/ubuntu:20.04 ubuntu -- bash`{{execute}}  
+The Pod and other Kubernetes resources may be created via CLI, but the prefered way is to use manifest file (it is like a docker-compose in a Docker ecosystem). We can see how our Pod manifest will look like. For this, simply run the following command: `kubectl run --generator=run-pod/v1 --dry-run --output yaml --image=quay.io/qwinkler/ubuntu:20.04 ubuntu -- bash`{{execute}}  
+
+> We are using the `generator` flag, because the Kubernetes version in Katacoda is outdated. You don't need this flag anymore in order to run this command.
 
 We just run the same command but with `dry-run` mode and made an `output` in yaml format. What is the key differences from docker-compose?  
 - `apiVersion` - Is an API groups. They make it easier to extend the Kubernetes API and it is a mandatory field.  
