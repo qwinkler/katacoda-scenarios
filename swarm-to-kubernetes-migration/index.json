@@ -10,16 +10,24 @@
         "text": "step1.md"
       },
       {
-        "title": "Kubernetes introduction",
+        "title": "Kubernetes and Pod introduction",
         "text": "step2.md"
       },
       {
-        "title": "Scaling our workload",
+        "title": "Pod vs Docker container",
         "text": "step3.md"
       },
       {
-        "title": "Expose our workload",
+        "title": "Using Pods",
         "text": "step4.md"
+      },
+      {
+        "title": "Scaling our workload",
+        "text": "step5.md"
+      },
+      {
+        "title": "Expose our workload",
+        "text": "step6.md"
       }
     ],
     "intro": {
