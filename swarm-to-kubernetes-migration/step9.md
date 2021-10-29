@@ -1,11 +1,11 @@
-Healthcheck is very important part of the Kubernetes. However, the healthcheck in Docker is very limited. You can just execute a command inside your container. In a Kubernetes, you have more things to configure.
+Healthcheck is a very important part of the Kubernetes. However, the health check in Docker is very limited. You can just execute a command inside your container. In Kubernetes, you have more things to configure.
 
-The Kubernetes has a special configurations which called Probes. We have 3 probe types:
+The Kubernetes has special configurations called Probes. We have 3 probe types:
 - `liveness`. We need it to know when to restart a container;
-- `readiness`. We need it to know when your container is ready to receive traffic. For example, an application might need to load large data or configuration files during startup, or depend on external services after startup. In such cases, you don't want to kill the application, but you don't want to send it requests either. Jumping ahead, the Service will add the Pod IP to a list of Endpoints only when readiness probe will succeed;
-- `startup`. Kubernetes uses startup probes to know when a container application has started. Sometimes, your application may has a slow start, but when it's loaded, it works pretty fast. For this types of application, you need to configure the `startup` probe.
+- `readiness`. We need to know when your container is ready to receive traffic. For example, an application might need to load large data or configuration files during startup or depend on external services after startup. In such cases, you don't want to kill the application, but you don't want to send it requests either. Jumping ahead, the Service will add the Pod IP to a list of Endpoints only when the readiness probe will succeed;
+- `startup`. Kubernetes uses startup probes to know when a container application has started. Sometimes, your application may have a slow start, but when it's loaded, it works pretty fast. For this type of application, you need to configure the `startup` probe.
 
-Okay, let's compare it with the Docker healthcheck:
+Okay, let's compare it with the Docker health check:
 ```
 version: '3.3'
 services:
@@ -38,4 +38,4 @@ spec:
       failureThreshold: 3
 ```
 
-To see how to configre other probes, please refer to [Kubernetes Probes Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes)
+To see how to configure other probes, please refer to [Kubernetes Probes Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes)

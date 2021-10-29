@@ -89,7 +89,7 @@ spec:
 
 Apply: `kubectl apply -f full.yml`{{execute}}
 
-The only difference is that in Docker Swarm our service was available at ":8888" port. In the Kubernetes, it is not a good practice, and it is recommended to use DNS records: [Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview)
+The only difference with Docker Swarm is that our service was available at ":8888" port. In the Kubernetes, it is not a good practice and is recommended to use DNS records: [Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview)
 
 Get our objects: `kubectl get deployment,pod,service,secret,ingress -l app=echoserver`{{execute}}
 

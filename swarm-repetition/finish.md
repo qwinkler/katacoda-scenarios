@@ -1,1 +1,1 @@
-Thanks for the journey. See ya in the Kubernetes migration scenario!
+Thanks for the journey. See you in the Kubernetes migration scenario!

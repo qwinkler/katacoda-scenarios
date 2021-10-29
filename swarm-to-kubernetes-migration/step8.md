@@ -1,20 +1,20 @@
 In the Docker Swarm, if you want to give your application external access, you need to expose it via port (see the [`swarm-repetition` scenario](https://www.katacoda.com/qwinkler/scenarios/swarm-repetition) if you don't understand).
 
-In a Kubernetes we have [Ingress Object](https://kubernetes.io/docs/concepts/services-networking/ingress). An API object that manages external access to the services in a cluster, typically HTTP. Ingress may provide load balancing, SSL termination and name-based virtual hosting.
+In a Kubernetes, we have [Ingress Object](https://kubernetes.io/docs/concepts/services-networking/ingress). An API object that manages external access to the services in a cluster, typically HTTP. Ingress may provide load balancing, SSL termination, and name-based virtual hosting.
 
-> I would definetly recommend you to read the official documentation for better explanation of that.
+> I would recommend you to read the official documentation for a better explanation of that.
 
-You already what the Service and Pod is, and how they relate. Here is the diagram of Ingress and how it works:
+You already what the Service and Pod are, and how they relate. Here is the diagram of Ingress and how it works:
 
 ![](./files/ingress.png)
 
-So, it is just an entrypoint to your cluster. In order to learn the Ingress on practice, we need to configure it on our host.
+So, it is just an entry point to your cluster. To learn the Ingress on practice, we need to configure it on our host.
 
-> In real life, you will probably have the configured Ingress Controller + DNS. But in our sandbox environment we need to configure everything manually. So, if you are doing it in the cluster, where everything is configured - skip the configuration part.
+> In real life, you will probably have the configured Ingress Controller + DNS. But in our sandbox environment, we need to configure everything manually. So, if you are doing it in the cluster, where everything is configured - skip the configuration part.
 
 # Configuration
 
-Install the kubernetes resources: `minikube addons enable ingress`{{execute}}  
+Install the Kubernetes resources: `minikube addons enable ingress`{{execute}}  
 
 # Demo
 
@@ -76,16 +76,16 @@ spec:
 
 Apply this manifest: `kubectl apply -f ingress.yml`{{execute}}
 
-You already know what the Service, Secret and Pod is. The only new object is Ingress. Let's dive deeper into Ingress specification.
+You already know what the Service, Secret, and Pod are. The only new object is Ingress. Let's dive deeper into Ingress specification.
 
-> In a real life, you would probably have newer Kubernetes cluster with newer apiVersion and a little bit different spec, but the general Ingress idea is the same.
+> In a real-life, you would probably have a newer Kubernetes cluster with newer apiVersion and a little bit different spec, but the general Ingress idea is the same.
 
-- `rules` - we have a rules which will be configured by this Ingress object;
+- `rules` - we have rules which will be configured by this Ingress object;
 - `host` - the DNS name where your application will be available;
 - `paths` - the base path where your application will be available. Maybe you want your app to be available with some prefix, like `/v1`, or `/app`;
 - `backend` - Service to which traffic will be pointed;
 
-Again, in a real life you have some DNS provider (AWS Route53 for example), and you need to configure the DNS records there. In our case, we will configure the local hosts file. For this, run: `echo "$(minikube ip) echoserver.test" > /etc/hosts`{{execute}}
+Again, in real-life you have some DNS provider (AWS Route53 for example), and you need to configure the DNS records there. In our case, we will configure the local hosts file. For this, run: `echo "$(minikube ip) echoserver.test" > /etc/hosts`{{execute}}
 
 Verify that everything works: `curl http://echoserver.test`{{execute}}
 

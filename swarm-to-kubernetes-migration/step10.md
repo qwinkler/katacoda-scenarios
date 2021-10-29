@@ -41,4 +41,4 @@ PORT=8080
 ```
 
 The next step will have a full Kubernetes manifest. If you want to try it on your own, do it right now and compare it with the results in the next step.
-Also, we didn't covered the `resources` section, since it is very familiar with Docker Swarm and you can see the difference in the [Kubernetes Resources Documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers)
+Also, we didn't cover the `resources` section, since it is very familiar with Docker Swarm, and you can see the difference in the [Kubernetes Resources Documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers)

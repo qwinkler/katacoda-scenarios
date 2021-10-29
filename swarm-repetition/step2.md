@@ -1,4 +1,4 @@
-To deploy your application, we need to setup a Swarm cluster:
+To deploy your application, we need to set up a Swarm cluster:
 
 `docker swarm init`{{execute}}
 
@@ -10,7 +10,7 @@ Continue, if you see the information about your nodes. Next, pull the docker ima
 
 `docker pull quay.io/qwinkler/echoserver:1.10.3`{{execute}}
 
-You can faced with the following message:  
+You can face with the following message: 
 
 ```
 Error response from daemon: toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
@@ -22,13 +22,13 @@ And finally, deploy our application:
 
 `docker stack deploy --compose-file=./echoserver.yml echoserver`{{execute}}
 
-So now, we deployed the service, exposed it via port and configured healthcheck.
+So now, we deployed the service, exposed it via a port, and configured healthcheck.
 
 We need to verify, that we have `1/1` replicas:
 
 `docker service ls`{{execute}}
 
-In order to access this application you can use the worker/manager IP. We will save this IP into the environment variable:
+To access this application you can use the worker/manager IP. We will save this IP into the environment variable:
 
 `export NODE_IP=$(docker node inspect host01 | jq -r '.[0].Status.Addr')`{{execute}}
 
@@ -40,9 +40,9 @@ If everything is fine, run the following command:
 
 `curl http://$NODE_IP:8888`{{execute}}
 
-Great. You just received an information about the service deployed in the Swarm cluster!
+Great. You just received information about the service deployed in the Swarm cluster!
 
-The port is `8888` because we exposed it in our stack file. However, the application is running on a port `8080`, so if you want to connect to application inside a cluster, you have to use the `8080` port. Moreover, let's discuss the internal communication between the services. In the Docker Swarm, the services have the DNS records and therefore you can communicate with a service by its name.
+The port is `8888` because we exposed it in our stack file. The application is running on port `8080`.  If you want to connect the application inside a cluster, you need to use the `8080` port. Moreover, let's discuss the internal communication between the services. In the Docker Swarm, services have DNS records. Therefore you can communicate with a service by its name.
 
 Let's verify these statements. To find the service name, simply run the following command:  
 
