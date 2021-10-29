@@ -43,7 +43,7 @@ Great, but what about the `selector` and `matchLabels`? Deployment uses `labels`
 
 Okay, enough theory. Let's deploy our deployment: `kubectl apply -f basic-deployment.yml`{{execute}}
 
-On this step we created a lot of Kubernetes resources. Namely: Deployment, ReplicaSet and Pod. Why there are so much resources? Let me explain:  
+On this step we created a lot of Kubernetes resources. Namely: Deployment, ReplicaSet and Pod. Why there are so much resources if we only created a single Deployment? Let me explain:  
 - `Pod`. We know what the Pod is. It is like a list of containers in a Docker Swarm, but with some peculiarities;  
 - `ReplicaSet`. A ReplicaSet's purpose is to maintain a stable set of replica Pods running at any given time. As such, it is often used to guarantee the availability of a specified number of identical Pods. So, all of the dirty job made the ReplicaSet. But why did we used the Deployment then? We used Deployment, because ReplicaSet can't change the image and the Pod template. Also, it can permorm the rolling update, for example. Again, it just maintain a stable set of replica Pods running at any given time. Okay, what is the Deployment job then?
 - `Deployment`. A Deployment's purpose is to maintain a set of ReplicaSets. For example, we deployed the application version 1.0.0 in a single replica. What Kubernetes did? It created 1 Deployment object. Deployment object spawned 1 ReplicaSet object. ReplicaSet spawned 1 Pod. If we update the Deployment object (for example, we will change the image to 2.0.0), the Deployment will create a NEW Replicaset. The Deployment will scale this new ReplicaSet, so it will create another Pod. When the new Pod will be up and running, and healthcheck will be fine, the Deployment will scale down previous ReplicaSet (just scale not delete), and the Pod count will be 1 with a new version.
@@ -51,7 +51,7 @@ On this step we created a lot of Kubernetes resources. Namely: Deployment, Repli
 Why the Kubernetes did it in that way? So, with this approach we can do a very fine tuning of the Deployment behaviour. For example, we can configre Deployment to scale the current ReplicaSet before creating a new Pods, or we can configure it to create ALL of the new Pods and only them remove the old ones (like blue/green deployment strategy). So, with these features, we can do a very great configuration of our deployment process.
 
 Sorry for such a long epilogue, I guess it wasn't so boring. Let's back to our Deployment. To prove, that I'm not lying, let's get all of the resources that Kubernetes created with our Deployment file: `kubectl get deployment,replicaset,pod`{{execute}}.  
-As you can see, I'm not a liar! There are 1 Deployment, 1 ReplicaSet and 1 Pod.
+As you can see, I'm not a liar! There are 1 Deployment, 1 ReplicaSet and 3 Pods.
 
 Since we gave our resources the `app: nginx` label, let's filter the output in this way. Of course it will not change anything in our case, but in real life it must be so hard to navigate through hundrends of resources. For this, run the following command: `kubectl get deployment,replicaset,pod -l app=nginx`{{execute}}.
 
@@ -82,7 +82,9 @@ And apply it once again: `kubectl apply -f basic-deployment.yml`{{execute}}.
 
 We can see what is happening with a Pods in a real time. For this, run: `kubectl get pod -l app=nginx --watch`{{execute}}
 
-As you saw, the new Pod was created and the old one was removed. Now, we need to have: 1 Deployment, 2 ReplicaSet and 1 Pod. Lets verify:
+> Press Ctrl+C to stop the watch process
+
+As you saw, the new Pod was created and the old one was removed. Now, we need to have: 1 Deployment, 2 ReplicaSet and 3 Pods. Lets verify:
 
 `kubectl get deployment,replicaset,pod`{{execute}}
 

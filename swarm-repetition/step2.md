@@ -8,7 +8,7 @@ Verify that cluster works. Run the following command and verify that node state 
 
 Continue, if you see the information about your nodes. Next, pull the docker image (just in case):
 
-`docker pull docker.io/cilium/echoserver:1.10.3`{{execute}}
+`docker pull quay.io/qwinkler/echoserver:1.10.3`{{execute}}
 
 You can faced with the following message:  
 

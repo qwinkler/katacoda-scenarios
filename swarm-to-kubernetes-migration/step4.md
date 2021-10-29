@@ -43,6 +43,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
+  labels:
+    app: nginx
 spec:
   selector:
     app: nginx
@@ -56,7 +58,7 @@ And apply it: `kubectl apply -f service.yml`{{execute}}.
 
 We created a new Pod and a DNS record `nginx-service` that matches our Pod IP.  
 Let's verify. For this, we need to find the Pod IP: `kubectl get pod -l app=nginx -o wide`{{execute}}.  
-Great. Now, let's describe our service: `kubectl describe service -l k8s-app=tv-k8s-dashboard`{{execute}}.  
+Great. Now, let's describe our service: `kubectl describe service -l app=nginx`{{execute}}.  
 As you can see, there is the `Endpoints` section which contains our Pod IP. Great, let's test it:
 
 `kubectl exec -it nginx -- bash`{{execute}}.  
@@ -83,6 +85,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
+  labels:
+    app: nginx
 spec:
   selector:
     app: nginx
@@ -92,6 +96,7 @@ spec:
       targetPort: nginx-port
 </pre>
 
+Since we can't modify all of the Pod attributes, we need to delete it first: `kubectl delete -f service.yml`{{execute}}.  
 Apply the modified file: `kubectl apply -f service.yml`{{execute}}.
 
 Now we gave the `containerPort` a name. We called it `nginx-port`. And now, the Service may use this port name instead of hardcoding it in 2 places.  
