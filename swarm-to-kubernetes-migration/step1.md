@@ -5,19 +5,23 @@ For this scenario, we choose the [Minikube](https://minikube.sigs.k8s.io/docs) f
 - You only have to type `minikube start` to spin up the local Kubernetes cluster;
 - We can install add-ons to bring the experience to the real-world Kubernetes cluster.
 
-We will need to download and install `minikube` and `kubectl`:
+We will need to download and install `minikube` and `kubectl`.
+
+> You can click on the command that rounded in a black box and it will be automatically executed
+
 ```
 (
-  curl -LO https://storage.googleapis.com/minikube/releases/v1.7.0/minikube-linux-amd64 && sudo install minikube-linux-amd64 /usr/local/bin/minikube
-  minikube start --vm-driver=none --addons=[ingress]
-  curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl && sudo install kubectl /usr/local/bin/kubectl
+  apt-get install -y conntrack
+  curl -LO https://storage.googleapis.com/minikube/releases/v1.23.2/minikube-linux-amd64 && sudo install minikube-linux-amd64 /usr/local/bin/minikube
+  minikube start --cni=calico --vm-driver=none --force --kubernetes-version=v1.21.2 --addons=ingress
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.21.2/bin/linux/amd64/kubectl && sudo install kubectl /usr/local/bin/kubectl
 )
 ```{{execute}}
 
+> Since we will install and configure the Kubernetes cluster, it will take some time. Be patient.
+
 Okay, we have a running Kubernetes cluster, but how to interact with it? The Kubernetes brain is the Kubernetes API server. Since it is a REST API and every request is going throw it, you can use any util to interact with it, but the most common one is the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview) CLI tool.  
 We will use the `kubectl` in this scenario as well. So, let's get started!
-
-> You can click on the command that rounded in a black box and it will be automatically executed
 
 Verify the cluster status: `kubectl get nodes`{{execute}}
 
