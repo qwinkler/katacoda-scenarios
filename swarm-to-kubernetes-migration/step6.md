@@ -1,11 +1,11 @@
-We already learned what the `kubectl` is, what the `Pod` is, and even how the `Deployment` works. How cool is that? But now, we need to expose our application. What does it mean?
+In a real life, we don't need to deploy the single application in a cluster. We usually want to deploy many application and they need to speak with each other.
 
-As you remember, in the Docker Swarm, the services have DNS records and therefore you can communicate with a service by its name. The Kubernetes will not create a DNS record for your services automatically. We need to do it on our own with another primitive: `Service`.
+As you remember, in the Docker Swarm, the services have DNS records and therefore you can communicate with a service by its name. It doesn't work in the Kubernetes.  
+The Kubernetes will not create a DNS record for your services automatically. We need to do it manually using another primitive: `Service`.
 
-An abstract way to expose an application running on a set of Pods as a network service.  
 With Kubernetes, you don't need to modify your application to use an unfamiliar service discovery mechanism. Kubernetes gives Pods their IP addresses and a single DNS name for a set of Pods and can load-balance across them.
 
-I will give you an example:  
+For example:  
 ```
 apiVersion: v1
 kind: Service
@@ -21,7 +21,9 @@ spec:
 ```
 
 The following example will create a Kubernetes Service object with the name `my-service`.  
-Under the hood, it will create a DNS record `my-service` and the endpoints of this DNS record will be the Pods that fit the selector. So, all of the Pods, that has the label `app=MyApp` will be endpoints of the service and they will be reachable by the `my-service` DNS record.
+Under the hood, it will create a DNS record `my-service` and the Endpoints of this DNS record will be the Pods that fit the selector. So, all of the Pods, that has the label `app=MyApp` will be Endpoints of the service and they will be reachable by the `my-service` DNS record.
+
+> By the way, the Endpoint - is another Kubernetes object! You can check it manually. We will create a Service later in this chapter. When the service will be created, run the following command: `kubectl get endpoints -l app=nginx` to see the list of the Endpoints.
 
 Let's define our own example, deploy it and understand everything in action. For this, create a new manifest file:
 
@@ -38,6 +40,7 @@ spec:
     image: quay.io/qwinkler/nginx:1.21
     ports:
     - containerPort: 80
+      protocol: TCP
 ---
 apiVersion: v1
 kind: Service
@@ -57,9 +60,14 @@ spec:
 And apply it: `kubectl apply -f service.yml`{{execute}}.
 
 We created a new Pod and a DNS record `nginx-service` that matches our Pod IP.  
-Let's verify. For this, we need to find the Pod IP: `kubectl get pod -l app=nginx -o wide`{{execute}}.  
+Let's verify. For this, we need to find the Pod IP: `kubectl get pod -l app=nginx -o wide`{{execute}}. 
+
+> You can see the Pod IP under the `IP` column.
+
 Great. Now, let's describe our service: `kubectl describe service -l app=nginx`{{execute}}.  
-As you can see, there is the `Endpoints` section which contains our Pod IP. Great, let's test it:
+As you can see, there is the `Endpoints` section which contains our Pod IP.
+
+Now, let's test the DNS communication:
 
 Exec to the Pod: `kubectl exec -it nginx -- bash`{{execute}}  
 Fetch the service by DNS name: `curl -I --silent http://nginx-service | head -n1`{{execute}}.  

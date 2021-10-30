@@ -1,7 +1,7 @@
 The following manifest is an example of a Pod consisting of a **single** container running the image `nginx:1.21`.  
 Create this file in your editor.
 
-> Simply press the "Copy to Editor" button at the right upper corner of the file content, and it will be automatically created and saved.
+> Click on "Copy to Editor" button at the right upper corner of the file content. The file with required name will be created and saved.
 
 <pre class="file" data-filename="pod.yml" data-target="replace">
 apiVersion: v1
@@ -24,7 +24,8 @@ To see the list of Pods, run: `kubectl get pod`{{execute}}.
 To see the detailed information about the Pod, run: `kubectl describe pod nginx`{{execute}}.  
 
 Okay, let's verify our Pod status: `kubectl get pod`{{execute}}.  
-The ready column must show `1/1`.  
+
+> The ready column must show `1/1`. If it is not, just wait for a while and try again.
 
 We can access any Pod in the cluster using the `exec` command from our local machine, no matter which node the Pod is running.  
 To do so, run the following command: `kubectl exec -it nginx -- bash`{{execute}}.  
@@ -35,9 +36,9 @@ Cleanup. You can delete the Pod differently:
 - Delete the resources by their kind + name: `kubectl delete pod nginx`{{execute}};
 - Delete the resources by filenames: `kubectl delete --filename ./pod.yml`{{execute}}.
 
-If you deploy many resources, it is convenient to use the second approach.
+> If you deploy many resources, it is convenient to use the second approach.
 
-With Kubernetes, you can pre-initialize your Pod before running the main image using [initContainers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). You can gracefully stop your Pod or run the command right after the Pod was started using [`preStop` and `postStart` hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks), and many many more. In most cases, you will never use it, but keep in mind that you can do everything to run your application smoothly in the Kubernetes cluster. For all of the available options, please read the Kubernetes Documentation.
+With Kubernetes, you can pre-initialize your Pod before running the main image using [initContainers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). You can gracefully stop your Pod or run the command right after the Pod was started using [`preStop` and `postStart` hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks), and many many more. In most cases, you will rarely use it, but keep in mind that you can do everything to run your application smoothly in the Kubernetes cluster. For all of the available options, please read the Kubernetes Documentation.
 
 To summarize:
 

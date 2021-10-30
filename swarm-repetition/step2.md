@@ -28,6 +28,8 @@ We need to verify, that we have `1/1` replicas:
 
 `docker service ls`{{execute}}
 
+> Continue to run this command until services will be in a ready state
+
 To access this application you can use the worker/manager IP. We will save this IP into the environment variable:
 
 `export NODE_IP=$(docker node inspect host01 | jq -r '.[0].Status.Addr')`{{execute}}

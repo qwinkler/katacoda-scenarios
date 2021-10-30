@@ -26,7 +26,7 @@
         "text": "step5.md"
       },
       {
-        "title": "Communicate between Pod",
+        "title": "Pods communication",
         "text": "step6.md"
       },
       {
@@ -62,9 +62,9 @@
     }
   },
   "environment": {
-    "uilayout": "editor-terminal"
+    "uilayout": "vscode-terminal-split"
   },
   "backend": {
-    "imageid": "minikube-running"
+    "imageid": "ubuntu:2004"
   }
 }
