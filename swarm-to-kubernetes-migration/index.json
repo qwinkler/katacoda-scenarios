@@ -61,6 +61,9 @@
       "text": "finish.md"
     }
   },
+  "environment": {
+    "uilayout": "editor"
+  },
   "backend": {
     "imageid": "ubuntu:20.04"
   }
