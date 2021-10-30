@@ -1,4 +1,18 @@
-Before going deeper with Kubernetes, let's set up an environment for that. Right now, the new Kubernetes cluster is spinning up for you.
+Before going deeper with Kubernetes, let's set up an environment for that.
+
+For this scenario, we choose the [Minikube](https://minikube.sigs.k8s.io/docs) for multiple reasons:
+- You may easily install it on your laptop;
+- You only have to type `minikube start` to spin up the local Kubernetes cluster;
+- We can install add-ons to bring the experience to the real-world Kubernetes cluster.
+
+We will need to download and install `minikube` and `kubectl`:
+```
+(
+  curl -LO https://storage.googleapis.com/minikube/releases/v1.7.0/minikube-linux-amd64 && sudo install minikube-linux-amd64 /usr/local/bin/minikube
+  minikube start --vm-driver=none --addons=[ingress]
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl && sudo install kubectl /usr/local/bin/kubectl
+)
+```{{execute}}
 
 Okay, we have a running Kubernetes cluster, but how to interact with it? The Kubernetes brain is the Kubernetes API server. Since it is a REST API and every request is going throw it, you can use any util to interact with it, but the most common one is the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview) CLI tool.  
 We will use the `kubectl` in this scenario as well. So, let's get started!

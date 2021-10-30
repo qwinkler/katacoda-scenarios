@@ -65,6 +65,6 @@
     "uilayout": "editor-terminal"
   },
   "backend": {
-    "imageid": "kubernetes-cluster-running:1.18"
+    "imageid": "ubuntu:20.04"
   }
 }

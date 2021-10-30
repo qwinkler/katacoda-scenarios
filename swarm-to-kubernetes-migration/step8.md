@@ -10,13 +10,7 @@ You already what the Service and Pod are, and how they relate. Here is the diagr
 
 So, it is just an entry point to your cluster. To learn the Ingress on practice, we need to configure it on our host.
 
-> In real life, you will probably have the configured Ingress Controller + DNS. But in our sandbox environment, we need to configure everything manually. So, if you are doing it in the cluster, where everything is configured - skip the configuration part.
-
-# Configuration
-
-Install the Kubernetes resources: `minikube addons enable ingress`{{execute}}  
-
-# Demo
+> In real life, you will probably have the configured Ingress Controller + DNS. But in our sandbox environment, it will be so hard to configure everything manually. Therefore, you can review the manifest, and see how it works, but you will be unable to the the live demo. If you are doing everything on your laptop or in configured cluster - you can try to run this demo.
 
 Create a new manifest file:
 
@@ -74,7 +68,7 @@ spec:
           servicePort: 8080
 </pre>
 
-Apply this manifest: `kubectl apply -f ingress.yml`{{execute}}
+Apply this manifest: `kubectl apply -f ingress.yml`
 
 You already know what the Service, Secret, and Pod are. The only new object is Ingress. Let's dive deeper into Ingress specification.
 
@@ -85,8 +79,11 @@ You already know what the Service, Secret, and Pod are. The only new object is I
 - `paths` - the base path where your application will be available. Maybe you want your app to be available with some prefix, like `/v1`, or `/app`;
 - `backend` - Service to which traffic will be pointed;
 
-Again, in real-life you have some DNS provider (AWS Route53 for example), and you need to configure the DNS records there. In our case, we will configure the local hosts file. For this, run: `echo "$(minikube ip) echoserver.test" > /etc/hosts`{{execute}}
+Again, in real-life you have some DNS provider (AWS Route53 for example), and you need to configure the DNS records there. If you are running this demo on your laptop, you can configure the record in `/etc/hosts` file:
+```
+<worker_ip> echoserver.test
+```
 
-Verify that everything works: `curl http://echoserver.test`{{execute}}
+Verify that everything works: `curl http://echoserver.test`
 
-Great! We can do the cleanup: `kubectl delete -f ingress.yml`{{execute}}
+Great! We can do the cleanup: `kubectl delete -f ingress.yml`
