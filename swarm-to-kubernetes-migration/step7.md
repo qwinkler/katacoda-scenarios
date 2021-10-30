@@ -36,7 +36,7 @@ metadata:
 spec:
   containers:
   - name: echoserver
-    image: quay.io/qwinkler/echoserver:1.21
+    image: quay.io/qwinkler/echoserver:1.10.3
     envFrom:
       - secretRef:
           name: echoserver-secret
@@ -50,7 +50,6 @@ metadata:
   name: echoserver-secret
 data:
   PORT: 8080
-```
 </pre>
 
 Let's try to apply it: `kubectl apply -f ./secret.yml`{{execute}}
@@ -72,7 +71,7 @@ metadata:
 spec:
   containers:
   - name: echoserver
-    image: quay.io/qwinkler/echoserver:1.21
+    image: quay.io/qwinkler/echoserver:1.10.3
     envFrom:
       - secretRef:
           name: echoserver-secret
@@ -86,7 +85,6 @@ metadata:
   name: echoserver-secret
 data:
   PORT: ODA4MA==
-```
 </pre>
 
 Apply it once again, and everything should be fine now: `kubectl apply -f ./secret.yml`{{execute}}
@@ -99,4 +97,4 @@ To verify, that Pod works well, we need to check it's environment variables.
 - Select the env variables: `env | grep "^PORT="`{{execute}};
 - Press `exit`.
 
-Great. Do the cleanup: `kubectl delete -f ./secret.yml`.
+Great. Do the cleanup: `kubectl delete -f ./secret.yml`{{execute}}.

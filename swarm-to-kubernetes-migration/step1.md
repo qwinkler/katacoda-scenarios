@@ -15,10 +15,11 @@ We will need to download and install `minikube` and `kubectl`.
   curl -LO https://storage.googleapis.com/minikube/releases/v1.23.2/minikube-linux-amd64 && sudo install minikube-linux-amd64 /usr/local/bin/minikube
   minikube start --cni=calico --vm-driver=none --force --kubernetes-version=v1.21.2 --addons=ingress
   curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.21.2/bin/linux/amd64/kubectl && sudo install kubectl /usr/local/bin/kubectl
+  echo "Kubernetes cluster was configured"
 )
 ```{{execute}}
 
-> Since we will install and configure the Kubernetes cluster, it will take some time. Be patient.
+> Since we will install and configure the Kubernetes cluster, it will take some time. Be patient. When the preparation steps will be ready, you will see the "Kubernetes cluster was configured" message in the terminal.
 
 Okay, we have a running Kubernetes cluster, but how to interact with it? The Kubernetes brain is the Kubernetes API server. Since it is a REST API and every request is going throw it, you can use any util to interact with it, but the most common one is the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview) CLI tool.  
 We will use the `kubectl` in this scenario as well. So, let's get started!

@@ -62,7 +62,7 @@ And apply it: `kubectl apply -f service.yml`{{execute}}.
 We created a new Pod and a DNS record `nginx-service` that matches our Pod IP.  
 Let's verify. For this, we need to find the Pod IP: `kubectl get pod -l app=nginx -o wide`{{execute}}. 
 
-> You can see the Pod IP under the `IP` column.
+> You can see the Pod IP under the `IP` column. If it equals to <none>, you need to wait and try again. The Kubernetes will assign an IP address only when Pod will be scheduled.
 
 Great. Now, let's describe our service: `kubectl describe service -l app=nginx`{{execute}}.  
 As you can see, there is the `Endpoints` section which contains our Pod IP.
@@ -70,8 +70,9 @@ As you can see, there is the `Endpoints` section which contains our Pod IP.
 Now, let's test the DNS communication:
 
 Exec to the Pod: `kubectl exec -it nginx -- bash`{{execute}}  
-Fetch the service by DNS name: `curl -I --silent http://nginx-service | head -n1`{{execute}}.  
-Press `exit`.
+Fetch the service by DNS name: `curl -I --silent http://nginx-service | head -n1`{{execute}}  
+The result from the operation above must be: `HTTP/1.1 200 OK`.  
+Type `exit`.
 
 Cool. Let's modify our service a bit and I will explain you the Service details:  
 <pre class="file" data-filename="service.yml" data-target="replace">
@@ -116,7 +117,7 @@ Also, we specified its parameters:
 
 `kubectl exec -it nginx -- bash`{{execute}}.
 `curl http://nginx-service:8080`{{execute}}.
-`exit`{{execute}}.
+Type `exit`.
 
 As you can see, everything works! Do the cleanup: `kubectl delete -f service.yml`{{execute}}.
 

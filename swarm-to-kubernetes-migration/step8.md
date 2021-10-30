@@ -72,7 +72,7 @@ spec:
                 name: echo-svc-port
 </pre>
 
-Apply this manifest: `kubectl apply -f ingress.yml`
+Apply this manifest: `kubectl apply -f ingress.yml`{{execute}}
 
 You already know what the Service, Secret, and Pod are. The only new object is Ingress. Let's dive deeper into Ingress specification.
 
@@ -86,4 +86,4 @@ Since we don't have a DNS provider, we will configure our `/etc/hosts` file: `ec
 
 Verify that everything works: `curl http://echoserver.test`{{execute}}
 
-Great! We can do the cleanup: `kubectl delete -f ingress.yml`
+Great! We can do the cleanup: `kubectl delete -f ingress.yml`{{execute}}

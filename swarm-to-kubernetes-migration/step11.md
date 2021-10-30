@@ -44,7 +44,7 @@ spec:
             memory: 32M
             cpu: 100m
         ports:
-        - name: echoserver-port
+        - name: echo-port
           containerPort: 8080
 ---
 apiVersion: v1
@@ -68,23 +68,27 @@ spec:
     app: echoserver
   ports:
     - protocol: TCP
-      port: echoserver-port
+      port: 80
+      targetPort: echo-port
+      name: echo-svc-port
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: echoserver-ingress
-  labels:
-    app: echoserver
 spec:
   rules:
   - host: echoserver.test
     http:
       paths:
-      - path: /
-        backend:
-          serviceName: echoserver-service
-          servicePort: 8080
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: echoserver-service
+              port:
+                name: echo-svc-port
+</pre>
 </pre>
 
 Apply: `kubectl apply -f full.yml`{{execute}}
@@ -92,6 +96,8 @@ Apply: `kubectl apply -f full.yml`{{execute}}
 The only difference with Docker Swarm is that our service was available at ":8888" port. In the Kubernetes, it is not a good practice and is recommended to use DNS records: [Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview)
 
 Get our objects: `kubectl get deployment,pod,service,secret,ingress -l app=echoserver`{{execute}}
+
+> Wait until all of the Pods will be in a ready state
 
 Verify its working: `curl http://echoserver.test`{{execute}}
 
