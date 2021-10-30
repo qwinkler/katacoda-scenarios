@@ -62,7 +62,7 @@
     }
   },
   "environment": {
-    "uilayout": "editor"
+    "uilayout": "editor-terminal"
   },
   "backend": {
     "imageid": "ubuntu:20.04"
