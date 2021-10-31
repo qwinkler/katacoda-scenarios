@@ -3,9 +3,9 @@ Before going deeper with Kubernetes, let's set up an environment for that.
 For this scenario, we choose the [Minikube](https://minikube.sigs.k8s.io/docs) for multiple reasons:
 - You may easily install it on your laptop;
 - You only have to type `minikube start` to spin up the local Kubernetes cluster;
-- We can install add-ons to bring the experience to the real-world Kubernetes cluster.
+- We can install add-ons to the Minikube. With add-ons, we can create a cluster very similar to the one you will use in real life.
 
-We will need to download and install `minikube` and `kubectl`.
+We will need to download and install some components. There is a script for that below.
 
 > You can click on the command that rounded in a black box and it will be automatically executed
 
@@ -19,7 +19,7 @@ We will need to download and install `minikube` and `kubectl`.
 )
 ```{{execute}}
 
-> Since we will install and configure the Kubernetes cluster, it will take some time. Be patient. When the preparation steps will be ready, you will see the "Kubernetes cluster was configured" message in the terminal.
+> Since we will install and configure the Kubernetes cluster, it will take some time. Be patient. When the preparation steps will finish, you will see the "Kubernetes cluster was configured" message in the terminal.
 
 Okay, we have a running Kubernetes cluster, but how to interact with it? The Kubernetes brain is the Kubernetes API server. Since it is a REST API and every request is going throw it, you can use any util to interact with it, but the most common one is the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview) CLI tool.  
 We will use the `kubectl` in this scenario as well. So, let's get started!

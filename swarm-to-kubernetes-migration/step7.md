@@ -48,6 +48,8 @@ kind: Secret
 type: Opaque
 metadata:
   name: echoserver-secret
+  labels:
+    app: echoserver
 data:
   PORT: 8080
 </pre>
@@ -83,6 +85,8 @@ kind: Secret
 type: Opaque
 metadata:
   name: echoserver-secret
+  labels:
+    app: echoserver
 data:
   PORT: ODA4MA==
 </pre>
