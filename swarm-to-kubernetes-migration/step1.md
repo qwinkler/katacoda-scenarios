@@ -42,7 +42,7 @@ Just wait for a while. The Minikube needs some time to spin up.
 
 An important thing to remember: you always communicate with Kubernetes via REST API. So, you can (and probably you will) interact with the Kubernetes cluster **from your local machine**. There is no need to log in to master nodes (as it was in the Docker Swarm).
 
-The Kubernetes saves your configurations in the `~/.kube/config` file (Linux, Mac OS). Find the file in the visual editor (above the terminal) at a path: `.kube/config`.
+The Kubernetes saves your configurations in the `~/.kube/config` file (Linux, Mac OS). Find the file in the visual editor (above the terminal) at a path: `.kube/config` (or using the `kubectl config view`{{execute}} command)
 
 There are many sections:  
 - `clusters` - contains information about known clusters and their names. We now only have a single cluster and the master IP;

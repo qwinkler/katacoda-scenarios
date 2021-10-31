@@ -10,7 +10,11 @@ Kubernetes Secrets are, by default, stored unencrypted in the API server's under
 
 So anyone who has the right to read Secrets object may see what's inside, so it is not about the security, it is about the convenience.
 
-There are a lot of different [Secrets types](https://kubernetes.io/docs/concepts/configuration/secret/#secret-types), but most of the time you will use the `Opaque` type. It is like the `.env` file in the Kubernetes ecosystem. The only difference between the `.env` file and Secret object is that all of the data in the Secrets objects is stored as a base64 encoded string. Example:
+There are a lot of different [Secrets types](https://kubernetes.io/docs/concepts/configuration/secret/#secret-types), but most of the time you will use the `Opaque` type. It is like the `.env` file in the Kubernetes ecosystem. The only difference between the `.env` file and Secret object is that all of the data in the Secrets objects is stored as a base64 encoded string.
+
+> Base64 is an encoding/decoding mechanism. The Kubernetes uses it for integrity. For example, the string '" %$.\' may cause some problems, but with base64 representation, it will look like: IiAlJC5c.
+
+Example:
 
 ```
 apiVersion: v1
