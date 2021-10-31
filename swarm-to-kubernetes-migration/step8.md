@@ -6,7 +6,7 @@ In a Kubernetes, we have [Ingress Object](https://kubernetes.io/docs/concepts/se
 
 You already what the Service and Pod are, and how they relate. Here is the diagram of Ingress and how it works:
 
-> See the diagram overview in the [Kubernetes Ingress Docs](https://kubernetes.io/docs/concepts/services-networking/ingress/#what-is-ingress)
+<img src="./assets/ingress.png" style="padding:10px;" width="15%" />
 
 So, it is just an entry point to your cluster. To learn the Ingress on practice, we need to configure it on our host.
 
