@@ -42,4 +42,6 @@ spec:
 
 Apply: `kubectl apply -f volume.yml`{{execute}}
 
-Verify the files. Exec to the Pod `kubectl exec -it game -- bash`, and explore the `/app` folder. Type `exit` to exit and delete the Pod: `kubectl delete -f volume.yml`
+Verify the files. Exec to the Pod `kubectl exec -it game -- bash`{{execute}}, and explore the `/app` folder.  
+You will see the `ConfiMap` content in the `configs` folder and an empty folder in the `emptyDir` folder.  
+Type `exit` to exit and delete the Pod: `kubectl delete -f volume.yml`{{execute}}
