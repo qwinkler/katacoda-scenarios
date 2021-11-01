@@ -7,10 +7,6 @@ In a real life you will use the different [Namespaces](https://kubernetes.io/doc
 
 There are also other objects. You can learn more about them in the [Kubernetes Components Documentation](https://kubernetes.io/docs/concepts/overview/components).
 
-## ConfigMap
-
-Also, the very cool Kubernetes feature is [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap). You can create any configuration file as an object and mount it directly in your Pod. There is no need to store configuration files on a machine. Check the [ConfigMaps docs](https://kubernetes.io/docs/concepts/configuration/configmap) for more.
-
 ## Job + CronJob
 
 The very useful Kubernetes object is a [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job). Unlike the Pod, the Job will run once and exit when the status code will be 0 (success code). You can configure its behavior using `restartPolicy` and other parameters. The Job is a good way to run a disposable application in a distributed environment. For example, you can run the database migration as a Job. When it will be successfully finished - it will never restart.
